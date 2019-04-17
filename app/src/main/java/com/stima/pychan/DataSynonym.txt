@@ -1,0 +1,7 @@
+apakah=apa
+bagaimanakah=bagaimana
+siapakah=siapa
+berapakah=berapa
+dimanakah=dimana
+membangun=membuat
+kamu=anda
