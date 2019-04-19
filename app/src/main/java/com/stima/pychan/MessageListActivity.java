@@ -18,6 +18,7 @@ public class MessageListActivity extends AppCompatActivity {
     private MessageListAdapter mMessageAdapter;
     private ArrayList<Message> messageList;
     private User user;
+    private User pychanUser;
 
     private Button sendButton;
     private EditText userChatInput;
@@ -29,9 +30,21 @@ public class MessageListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_message_list);
 
         user = new User("TESTUSER");
-        messageList = new ArrayList<Message>(2);
-        messageList.add(new Message("Aku Pychan", new User("Pychan")));
-        messageList.add(new Message("Halo, Pychan!", user));
+        pychanUser = new User("Pychan");
+
+        messageList = new ArrayList<Message>();
+        messageList.add(new Message("Aku Pychan. Aku adalah chatbot yang mengajarkan tentang kehidupan HAHAHAHAHHAHAHAHHA oke terimakasih", new User("Pychan")));
+        messageList.add(new Message("Halo, Pychan! Selamat bergabung di isekai lalalalaala lalalaalala lalalalaala alalalalala", user));
+        messageList.add(new Message("Aku Pychan. Aku adalah chatbot yang mengajarkan tentang kehidupan HAHAHAHAHHAHAHAHHA oke terimakasih", new User("Pychan")));
+        messageList.add(new Message("Halo, Pychan! Selamat bergabung di isekai lalalalaala lalalaalala lalalalaala alalalalala", user));
+        messageList.add(new Message("Aku Pychan. Aku adalah chatbot yang mengajarkan tentang kehidupan HAHAHAHAHHAHAHAHHA oke terimakasih", new User("Pychan")));
+        messageList.add(new Message("Halo, Pychan! Selamat bergabung di isekai lalalalaala lalalaalala lalalalaala alalalalala", user));
+        messageList.add(new Message("Aku Pychan. Aku adalah chatbot yang mengajarkan tentang kehidupan HAHAHAHAHHAHAHAHHA oke terimakasih", new User("Pychan")));
+        messageList.add(new Message("Halo, Pychan! Selamat bergabung di isekai lalalalaala lalalaalala lalalalaala alalalalala", user));
+        messageList.add(new Message("Aku Pychan. Aku adalah chatbot yang mengajarkan tentang kehidupan HAHAHAHAHHAHAHAHHA oke terimakasih", new User("Pychan")));
+        messageList.add(new Message("Halo, Pychan! Selamat bergabung di isekai lalalalaala lalalaalala lalalalaala alalalalala", user));
+        messageList.add(new Message("Aku Pychan. Aku adalah chatbot yang mengajarkan tentang kehidupan HAHAHAHAHHAHAHAHHA oke terimakasih", new User("Pychan")));
+        messageList.add(new Message("Halo, Pychan! Selamat bergabung di isekai lalalalaala lalalaalala lalalalaala alalalalala", user));
 
         sendButton = findViewById(R.id.button_chatbox_send);
         userChatInput = findViewById(R.id.edittext_chatbox);

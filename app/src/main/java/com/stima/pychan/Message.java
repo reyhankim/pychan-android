@@ -20,7 +20,7 @@ public class Message {
 
         dataPertanyaan = getDataFromFile(namaFilePertanyaan);
         dataStopWords = getDataFromFile(namaFileStopWords);
-        dataPertanyaan = getDataFromFile(namaFilePertanyaan);
+        dataSynonym = getDataFromFile(namaFileSynonym);
     }
 
     public Message(String message, User sender) {

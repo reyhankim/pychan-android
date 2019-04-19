@@ -40,9 +40,10 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     // Determines the appropriate ViewType according to the sender of the message.
     @Override
     public int getItemViewType(int position) {
+        User pychan = new User("Pychan");
         Message message = (Message) mMessageList.get(position);
 
-        if (!message.getSender().equals("Pychan")) {
+        if (!message.getSender().getNickname().equals(pychan.getNickname())) {
             // If the current user is the sender of the message
             return VIEW_TYPE_MESSAGE_SENT;
         } else {
@@ -141,7 +142,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             timeText.setText(strDate);
 
             // Insert the profile image from the URL into the ImageView.
-            Bitmap picture = BitmapFactory.decodeFile("../res/drawable/pychansuper.png");
+            Bitmap picture = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.pychansuper);
             profileImage = profileImage.findViewById(R.id.image_message_profile);
 
             Bitmap circleBitmap = Bitmap.createBitmap(picture.getWidth(), picture.getHeight(), Bitmap.Config.ARGB_8888);
