@@ -1,9 +1,13 @@
 package com.stima.pychan;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateFormat;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -137,7 +141,18 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             timeText.setText(strDate);
 
             // Insert the profile image from the URL into the ImageView.
-            Utils.displayRoundImageFromUrl(mContext, message.getSender().getProfileUrl(), profileImage);
+            Bitmap picture = BitmapFactory.decodeFile("../res/drawable/pychansuper.png");
+            profileImage = profileImage.findViewById(R.id.image_message_profile);
+
+            Bitmap circleBitmap = Bitmap.createBitmap(picture.getWidth(), picture.getHeight(), Bitmap.Config.ARGB_8888);
+            BitmapShader shader = new BitmapShader(picture, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+            Paint paint = new Paint();
+            paint.setShader(shader);
+            paint.setAntiAlias(true);
+            Canvas c = new Canvas(circleBitmap);
+            c.drawCircle(picture.getWidth() / 2, picture.getHeight() / 2, picture.getWidth() / 2, paint);
+
+            profileImage.setImageBitmap(circleBitmap);
         }
     }
 }
