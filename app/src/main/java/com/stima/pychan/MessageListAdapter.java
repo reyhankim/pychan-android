@@ -98,7 +98,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             messageText.setText(message.getMessage());
 
             // Specify Time Format
-            String pattern = "hh:mm";
+            String pattern = "hh:mm a";
             SimpleDateFormat df = new SimpleDateFormat(pattern, Locale.US);
 
             // Get message createdAt Time
@@ -129,7 +129,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             messageText.setText(message.getMessage());
 
             // Specify Time Format
-            String pattern = "hh:mm";
+            String pattern = "hh:mm a";
             SimpleDateFormat df = new SimpleDateFormat(pattern, Locale.US);
 
             // Get message createdAt Time
