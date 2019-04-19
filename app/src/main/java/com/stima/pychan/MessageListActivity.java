@@ -1,6 +1,7 @@
 package com.stima.pychan;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,12 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import static com.stima.pychan.Message.StringMatching;
-import static com.stima.pychan.Message.getDataPertanyaan;
 
 public class MessageListActivity extends AppCompatActivity {
     private RecyclerView mMessageRecycler;
@@ -67,8 +66,19 @@ public class MessageListActivity extends AppCompatActivity {
                         mMessageAdapter.notifyDataSetChanged();
                         messageList.add(new Message(StringMatching(content), new User("Pychan")));
                     } else {
+//                        content = content.toLowerCase();
+//                        //Menghapus stopwords pada input pertanyaan dengan pencarian kata stopwords menggunakan regex
+//                        for(int i=0;i<getDataStopWords().size();i++){
+//                            if(cekRegex(content, getDataStopWords().get(i))){
+//                                content = content.replaceAll("\\W" + getDataStopWords().get(i) + "\\W", " ");  //Menghapus stopwords pada question
+//                            }
+//                        }
+                        messageList.add(new Message(content, user));
+                        userChatInput.getText().clear();
                         user.setNickname(content);
-
+                        mMessageAdapter.notifyDataSetChanged();
+                        messageList.add(new Message("Halo, " + user.getNickname() + "! Salam kenal!", pychanUser));
+                        messageList.add(new Message("Kalau ada pertanyaan, langsung tanya aja, ya!", pychanUser));
                     }
                 }
 
@@ -81,8 +91,5 @@ public class MessageListActivity extends AppCompatActivity {
 //                }
             }
         });
-
     }
-
-
 }
