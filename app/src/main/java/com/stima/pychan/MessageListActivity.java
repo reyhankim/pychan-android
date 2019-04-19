@@ -69,10 +69,12 @@ public class MessageListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String content = userChatInput.getText().toString();
-                messageList.add(new Message(content, user));
-                userChatInput.getText().clear();
-                mMessageAdapter.notifyDataSetChanged();
-                messageList.add(new Message(StringMatching(content), new User("Pychan")));
+                if (content.trim().length() > 0) {
+                    messageList.add(new Message(content, user));
+                    userChatInput.getText().clear();
+                    mMessageAdapter.notifyDataSetChanged();
+                    messageList.add(new Message(StringMatching(content), new User("Pychan")));
+                }
 
 //                if (getDataPertanyaan().get(0) != null) {
 //                    Toast toast = Toast.makeText(getApplicationContext(), getDataPertanyaan().get(0), Toast.LENGTH_LONG);
