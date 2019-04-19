@@ -1,6 +1,7 @@
 package com.stima.pychan;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -8,73 +9,58 @@ public class Message {
     private String message;
     private User sender;
     private Date createdAt;
-    private final float matchPercentage;
-    private ArrayList<String> dataPertanyaan;
-    private ArrayList<String> dataSynonym;
-    private ArrayList<String> dataStopWords;
-    private final String namaFilePertanyaan = "DataPertanyaan.txt";
-    private final String namaFileSynonym = "DataSynonym.txt";
-    private final String namaFileStopWords = "DataStopWords.txt";
+
+    private static ArrayList<String> dataPertanyaan;
+    private static ArrayList<String> dataSynonym;
+    private static ArrayList<String> dataStopWords;
 
     public Message(String message, User sender, long createdAt) {
         setMessage(message);
         setSender(sender);
         setCreatedAt();
-        this.matchPercentage = (float) 0.9;
-        this.dataPertanyaan = new ArrayList<String>();
-        this.dataSynonym = new ArrayList<String>();
-        this.dataStopWords = new ArrayList<String>();
-
-        getDataFromFile(namaFilePertanyaan, this.dataPertanyaan);    //Mengambil data pertanyaan beserta jawaban
-        getDataFromFile(namaFileSynonym, this.dataSynonym);          //Mengambil data synonym
-        getDataFromFile(namaFileStopWords, this.dataStopWords);      //Mengambil data stopwords
-        
     }
 
-    public float getPercentage(){
-        return this.matchPercentage;
-    }
-
-    public String getMessage() {
+    String getMessage() {
         return this.message;
     }
 
-    public User getSender() {
+    User getSender() {
         return this.sender;
     }
 
-    public Date getCreatedAt() {
+    Date getCreatedAt() {
         return this.createdAt;
     }
 
-    public ArrayList<String> getDataPertanyaan(){
-        return this.dataPertanyaan;
+    public static ArrayList<String> getDataPertanyaan(){
+        return dataPertanyaan;
     }
 
-    public ArrayList<String> getDataSynonym(){
-        return this.dataSynonym;
+    public static ArrayList<String> getDataSynonym(){
+        return dataSynonym;
     }
 
-    public ArrayList<String> getDataStopWords(){
-        return this.dataStopWords;
+    public static ArrayList<String> getDataStopWords(){
+        return dataStopWords;
     }
 
-    public void setMessage(String message) {
+    void setMessage(String message) {
         this.message = message;
     }
 
-    public void setSender(User sender) {
+    void setSender(User sender) {
         this.sender = sender;
     }
 
-    public void setCreatedAt() {
+    void setCreatedAt() {
         this.createdAt = Calendar.getInstance().getTime();
     }
 
     public String StringMatching(String message){
         String question = message;
-        question = FormattingQuestion(this.dataStopWords, this.dataSynonym, question);
+        question = FormattingString(dataStopWords, dataSynonym, question);
 
+        final float matchPercentage = (float) 0.9;
         String[] temp;
         boolean found = false;
         int i;
@@ -83,9 +69,9 @@ public class Message {
 
         //Pengecekan langsung satu String dengan algoritma KMP
         i=0;
-        while(i<this.dataPertanyaan.size() && !found){
-            temp = this.dataPertanyaan.get(i).split("\\?");
-            result = KMP(temp[0].toLowerCase(),question);
+        while(i<dataPertanyaan.size() && !found){
+            temp = dataPertanyaan.get(i).split("\\?");
+            result = KMP(question, FormattingString(dataStopWords, dataSynonym, temp[0]));
             if(result==-1){ //Pertanyaan tidak ditemukan
                 i++;
             }else{ //Pertanyaan ditemukan
@@ -102,19 +88,19 @@ public class Message {
             while(i<dataPertanyaan.size() && !found){
                 String[] subkata = question.split(" ");
                 
-                temp = this.dataPertanyaan.get(i).split("\\?");
+                temp = dataPertanyaan.get(i).split("\\?");
                 pembilang=0;
                 pembagi = temp[0].length()-subkata.length+1;
                 
                 for(int j=0; j<subkata.length;j++){
-                    result = BM(temp[0].toLowerCase(),subkata[j]);
+                    result = BM(FormattingString(dataStopWords, dataSynonym, temp[0]),subkata[j]);
                     
                     if(result!=-1){
                         pembilang += subkata[j].length();
                     }
                 }
                 
-                if((pembilang/pembagi)>=this.matchPercentage){    //presentase kecocokan string
+                if((pembilang/pembagi)>=matchPercentage){    //presentase kecocokan string
                     out = temp[1];
                     found = true;
                 }else{
@@ -129,51 +115,29 @@ public class Message {
         return out;
     }
 
-    //Prosedur pembacaan file dan memindahkan ke memori agar data dari file tersimpan
-    public static void getDataFromFile(String namaFile, ArrayList<String> data){
 
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(namaFile));
-            String temp = null;
-            temp = br.readLine();
-            
-            while(temp!=null){
-                data.add(temp);
-                temp = br.readLine();
-            }
-
-        }catch(FileNotFoundException e){
-            System.out.println("Tidak dapat membuka file " + namaFile);
-            System.exit(1);
-        }catch(IOException e){
-            System.out.println("Gagal membaca file " + namaFile);
-            System.exit(1);
-        }
-            
-    }
 
     //Fungsi yang mengembalikan string hasil konversi pertanyaan dari user menjadi pernyataan untuk dilakukan pencarian pada list pertanyaan
-    public static String FormattingQuestion(ArrayList<String> stopWords, ArrayList<String> synonym, String question){
-        question = question.replace(" ?",""); //Penanganan kasus pertanyaan dengan tanda spasi sebelum ?
-        question = question.replace("?", ""); //Penanganan kasus pertanyaan dengan tanpa tanda spasi sebelum ?
-        question = question.toLowerCase();    //Menghapus tanda ? pada format pencarian
+    public static String FormattingString(ArrayList<String> stopWords, ArrayList<String> synonym, String kata){
+        kata = kata.replace("\\W?\\?","");     //Menghapus tanda ? pada format pencarian
+        kata = kata.toLowerCase();
 
         //Menghapus stopwords pada input pertanyaan dengan pencarian kata stopwords menggunakan regex
         for(int i=0;i<stopWords.size();i++){
-            if(cekRegex(question, stopWords.get(i))){
-                question = question.replaceAll(" " + stopWords.get(i) + " ", " ");  //Menghapus stopwords pada question
+            if(cekRegex(kata, stopWords.get(i))){
+                kata = kata.replaceAll("\\W" + stopWords.get(i) + "\\W", " ");  //Menghapus stopwords pada question
             }
         }
 
         //Menghapus synonym pada input pertanyaan dengan pencarian kata synonym menggunakan regex
         for(int i=0;i<synonym.size();i++){
             String[] temp = synonym.get(i).split("\\=");
-            if(cekRegex(question, temp[0])){
-                question = question.replaceAll(temp[0], temp[1]);
+            if(cekRegex(kata, temp[0])){
+                kata = kata.replaceAll(temp[0], temp[1]);
             }
         }
 
-        return question;
+        return kata;
     }
 
     //Algoritma Pencocokan String Knuth-Morris-Pratt (KMP Algorithm)
@@ -276,7 +240,7 @@ public class Message {
 
     public static boolean cekRegex(String kataInput, String pattern){
         boolean cek;
-        String regex = ".*" + pattern + ".*";
+        String regex = "\\W?" + pattern + "\\W?";
 
         cek = Pattern.matches(regex, kataInput);
 
