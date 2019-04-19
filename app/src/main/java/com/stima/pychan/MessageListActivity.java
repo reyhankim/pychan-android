@@ -31,22 +31,13 @@ public class MessageListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_list);
 
-        user = new User("TESTUSER");
+        user = new User("kamu");
         pychanUser = new User("Pychan");
 
         messageList = new ArrayList<Message>();
-        messageList.add(new Message("Aku Pychan. Aku adalah chatbot yang mengajarkan tentang kehidupan HAHAHAHAHHAHAHAHHA oke terimakasih", new User("Pychan")));
-        messageList.add(new Message("Halo, Pychan! Selamat bergabung di isekai lalalalaala lalalaalala lalalalaala alalalalala", user));
-        messageList.add(new Message("Aku Pychan. Aku adalah chatbot yang mengajarkan tentang kehidupan HAHAHAHAHHAHAHAHHA oke terimakasih", new User("Pychan")));
-        messageList.add(new Message("Halo, Pychan! Selamat bergabung di isekai lalalalaala lalalaalala lalalalaala alalalalala", user));
-        messageList.add(new Message("Aku Pychan. Aku adalah chatbot yang mengajarkan tentang kehidupan HAHAHAHAHHAHAHAHHA oke terimakasih", new User("Pychan")));
-        messageList.add(new Message("Halo, Pychan! Selamat bergabung di isekai lalalalaala lalalaalala lalalalaala alalalalala", user));
-        messageList.add(new Message("Aku Pychan. Aku adalah chatbot yang mengajarkan tentang kehidupan HAHAHAHAHHAHAHAHHA oke terimakasih", new User("Pychan")));
-        messageList.add(new Message("Halo, Pychan! Selamat bergabung di isekai lalalalaala lalalaalala lalalalaala alalalalala", user));
-        messageList.add(new Message("Aku Pychan. Aku adalah chatbot yang mengajarkan tentang kehidupan HAHAHAHAHHAHAHAHHA oke terimakasih", new User("Pychan")));
-        messageList.add(new Message("Halo, Pychan! Selamat bergabung di isekai lalalalaala lalalaalala lalalalaala alalalalala", user));
-        messageList.add(new Message("Aku Pychan. Aku adalah chatbot yang mengajarkan tentang kehidupan HAHAHAHAHHAHAHAHHA oke terimakasih", new User("Pychan")));
-        messageList.add(new Message("Halo, Pychan! Selamat bergabung di isekai lalalalaala lalalaalala lalalalaala alalalalala", user));
+        messageList.add(new Message("Halo, Aku Pychan!", pychanUser));
+        messageList.add(new Message("Aku adalah chatbot yang suka menjawab rasa penasaran dan keisenganmu!", pychanUser));
+        messageList.add(new Message("Eh, sebelumnya, kenalan dulu, dong! Nama kamu siapa?", pychanUser));
 
         sendButton = findViewById(R.id.button_chatbox_send);
         userChatInput = findViewById(R.id.edittext_chatbox);
@@ -70,10 +61,15 @@ public class MessageListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String content = userChatInput.getText().toString();
                 if (content.trim().length() > 0) {
-                    messageList.add(new Message(content, user));
-                    userChatInput.getText().clear();
-                    mMessageAdapter.notifyDataSetChanged();
-                    messageList.add(new Message(StringMatching(content), new User("Pychan")));
+                    if (messageList.size() > 3) {
+                        messageList.add(new Message(content, user));
+                        userChatInput.getText().clear();
+                        mMessageAdapter.notifyDataSetChanged();
+                        messageList.add(new Message(StringMatching(content), new User("Pychan")));
+                    } else {
+                        user.setNickname(content);
+
+                    }
                 }
 
 //                if (getDataPertanyaan().get(0) != null) {
