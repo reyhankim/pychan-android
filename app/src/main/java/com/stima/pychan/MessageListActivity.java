@@ -9,11 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class MessageListActivity extends AppCompatActivity {
     private RecyclerView mMessageRecycler;
     private MessageListAdapter mMessageAdapter;
-    @Override
+    private ArrayList<Message> messageList;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_list);

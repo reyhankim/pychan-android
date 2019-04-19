@@ -2,6 +2,7 @@ package com.stima.pychan;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MessageListAdapter extends RecyclerView.Adapter {
     private static final int VIEW_TYPE_MESSAGE_SENT = 1;
@@ -18,6 +22,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private List<Message> mMessageList;
 
+    // Constructor
     public MessageListAdapter(Context context, List<Message> messageList) {
         mContext = context;
         mMessageList = messageList;
@@ -87,8 +92,18 @@ public class MessageListAdapter extends RecyclerView.Adapter {
         void bind(Message message) {
             messageText.setText(message.getMessage());
 
+            // Specify Time Format
+            String pattern = "hh:mm";
+            SimpleDateFormat df = new SimpleDateFormat(pattern, Locale.US);
+
+            // Get message createdAt Time
+            Date present = message.getCreatedAt();
+
+            // Convert Time to String
+            String strDate = df.format(present);
+
             // Format the stored timestamp into a readable String using method.
-            timeText.setText(Utils.formatDateTime(message.getCreatedAt()));
+            timeText.setText(strDate);
         }
     }
 
@@ -108,10 +123,18 @@ public class MessageListAdapter extends RecyclerView.Adapter {
         void bind(Message message) {
             messageText.setText(message.getMessage());
 
-            // Format the stored timestamp into a readable String using method.
-            timeText.setText(Utils.formatDateTime(message.getCreatedAt()));
+            // Specify Time Format
+            String pattern = "hh:mm";
+            SimpleDateFormat df = new SimpleDateFormat(pattern, Locale.US);
 
-            nameText.setText(message.getSender().getNickname());
+            // Get message createdAt Time
+            Date present = message.getCreatedAt();
+
+            // Convert Time to String
+            String strDate = df.format(present);
+
+            // Format the stored timestamp into a readable String using method.
+            timeText.setText(strDate);
 
             // Insert the profile image from the URL into the ImageView.
             Utils.displayRoundImageFromUrl(mContext, message.getSender().getProfileUrl(), profileImage);

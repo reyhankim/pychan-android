@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class Message {
     private String message;
     private User sender;
-    private int createdAt;
+    private Date createdAt;
     private final float matchPercentage;
     private ArrayList<String> dataPertanyaan;
     private ArrayList<String> dataSynonym;
@@ -19,7 +19,7 @@ public class Message {
     public Message(String message, User sender, long createdAt) {
         setMessage(message);
         setSender(sender);
-        setCreatedAt(createdAt);
+        setCreatedAt();
         this.matchPercentage = (float) 0.9;
         this.dataPertanyaan = new ArrayList<String>();
         this.dataSynonym = new ArrayList<String>();
@@ -43,7 +43,7 @@ public class Message {
         return this.sender;
     }
 
-    public long getCreatedAt() {
+    public Date getCreatedAt() {
         return this.createdAt;
     }
 
@@ -67,8 +67,8 @@ public class Message {
         this.sender = sender;
     }
 
-    public void setCreatedAt(long createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedAt() {
+        this.createdAt = Calendar.getInstance().getTime();
     }
 
     public String StringMatching(String message){
@@ -79,7 +79,7 @@ public class Message {
         boolean found = false;
         int i;
         int result;
-        String out;
+        String out = null;
 
         //Pengecekan langsung satu String dengan algoritma KMP
         i=0;
