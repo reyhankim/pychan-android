@@ -8,10 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import static com.stima.pychan.Message.StringMatching;
+import static com.stima.pychan.Message.getDataPertanyaan;
 
 public class MessageListActivity extends AppCompatActivity {
     private RecyclerView mMessageRecycler;
@@ -71,6 +73,14 @@ public class MessageListActivity extends AppCompatActivity {
                 userChatInput.getText().clear();
                 mMessageAdapter.notifyDataSetChanged();
                 messageList.add(new Message(StringMatching(content), new User("Pychan")));
+
+//                if (getDataPertanyaan().get(0) != null) {
+//                    Toast toast = Toast.makeText(getApplicationContext(), getDataPertanyaan().get(0), Toast.LENGTH_LONG);
+//                    toast.show();
+//                } else {
+//                    Toast toast = Toast.makeText(getApplicationContext(), "DataPertanyaan Kosong", Toast.LENGTH_LONG);
+//                    toast.show();
+//                }
             }
         });
 

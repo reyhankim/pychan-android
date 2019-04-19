@@ -14,6 +14,7 @@ public class Message {
     private static ArrayList<String> dataStopWords;
 
     static {
+        System.out.println("Static initializer dijalankan");
         String namaFilePertanyaan = "DataPertanyaan.txt";
         String namaFileSynonym = "DataSynonym.txt";
         String namaFileStopWords = "DataStopWords.txt";
@@ -262,20 +263,23 @@ public class Message {
         ArrayList<String> data = new ArrayList<String>();
 
         try{
-            FileInputStream fis = new FileInputStream(namaFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String temp = null;
-            temp = br.readLine();
+            final File file = new File(namaFile);
 
-            while(temp!=null){
-                data.add(temp);
-                temp = br.readLine();
+            if(file.exists()){
+                FileInputStream fis = new FileInputStream(file);
+                BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+//            DataInputStream in = new DataInputStream(fis);
+                String temp = br.readLine();
+
+                while(temp!=null){
+                    data.add(temp);
+                    temp = br.readLine();
+                }
             }
-
-            in.close();
-        }catch(IOException e){
-            // System.out.println("Gagal membaca file " + namaFile);
+                System.out.println("BERHASIL");
+//            in.close();
+        }catch(Exception e){
+             System.out.println("Gagal membaca file " + namaFile);
 //            System.exit(1);
             e.printStackTrace();
         }
