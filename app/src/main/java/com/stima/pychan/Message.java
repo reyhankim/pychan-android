@@ -1,7 +1,6 @@
 package com.stima.pychan;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -14,7 +13,17 @@ public class Message {
     private static ArrayList<String> dataSynonym;
     private static ArrayList<String> dataStopWords;
 
-    public Message(String message, User sender, long createdAt) {
+    static {
+        String namaFilePertanyaan = "DataPertanyaan.txt";
+        String namaFileSynonym = "DataSynonym.txt";
+        String namaFileStopWords = "DataStopWords.txt";
+
+        dataPertanyaan = getDataFromFile(namaFilePertanyaan);
+        dataStopWords = getDataFromFile(namaFileStopWords);
+        dataPertanyaan = getDataFromFile(namaFilePertanyaan);
+    }
+
+    public Message(String message, User sender) {
         setMessage(message);
         setSender(sender);
         setCreatedAt();
@@ -56,7 +65,7 @@ public class Message {
         this.createdAt = Calendar.getInstance().getTime();
     }
 
-    public String StringMatching(String message){
+    public static String StringMatching(String message){
         String question = message;
         question = FormattingString(dataStopWords, dataSynonym, question);
 
@@ -245,5 +254,32 @@ public class Message {
         cek = Pattern.matches(regex, kataInput);
 
         return cek;
+    }
+
+    //Prosedur pembacaan file dan memindahkan ke memori agar data dari file tersimpan
+    public static ArrayList<String> getDataFromFile(String namaFile){
+
+        ArrayList<String> data = new ArrayList<String>();
+
+        try{
+            FileInputStream fis = new FileInputStream(namaFile);
+            DataInputStream in = new DataInputStream(fis);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String temp = null;
+            temp = br.readLine();
+
+            while(temp!=null){
+                data.add(temp);
+                temp = br.readLine();
+            }
+
+            in.close();
+        }catch(IOException e){
+            // System.out.println("Gagal membaca file " + namaFile);
+//            System.exit(1);
+            e.printStackTrace();
+        }
+
+        return data;
     }
 }
