@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class Message {
     private String message;
     private User sender;
-    private long createdAt;
+    private int createdAt;
     private final float matchPercentage;
     private ArrayList<String> dataPertanyaan;
     private ArrayList<String> dataSynonym;
