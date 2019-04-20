@@ -62,35 +62,26 @@ public class Message {
         int i;
         int result;
         String out = null;
+        float pembilang;    //counter jumlah huruf yang match
+        float pembagi;      //counter jumlah huruf dalam kalimat
 
         //Pengecekan langsung satu String dengan algoritma KMP
         i=0;
         while(i<dataPertanyaan.size() && !found){
             temp = dataPertanyaan.get(i).split("\\?\\W");
             result = KMP(question, FormattingString(dataStopWords, dataSynonym, temp[0]));
-            if(result==-1){ //Pertanyaan tidak ditemukan
-                i++;
-            }else{ //Pertanyaan ditemukan
-                out = temp[1];
+
+            if(result==0){
+                out = "WITH KMP " + temp[1];
                 found = true;
-            }
-        }
-        
-        if(!found){
-            //Pengecekan per-substring dengan algoritma BM
-            i=0;
-            float pembilang;    //counter jumlah huruf yang match
-            float pembagi;      //counter jumlah huruf dalam kalimat
-            while(i<dataPertanyaan.size() && !found){
+            }else{
                 String[] subkata = question.split(" ");
-                
-                temp = dataPertanyaan.get(i).split("\\?\\W");
                 pembilang=0;
                 pembagi = temp[0].length()-subkata.length+1;
-                
+
                 for(int j=0; j<subkata.length;j++){
                     result = BM(FormattingString(dataStopWords, dataSynonym, temp[0]),subkata[j]);
-                    
+
                     if(result!=-1){
                         pembilang += subkata[j].length();
                     }
@@ -99,7 +90,7 @@ public class Message {
                 persentasekecocokan = pembilang/pembagi;
 
                 if((persentasekecocokan)>=matchPercentage){    //presentase kecocokan string
-                    out = temp[1];
+                    out = "WITH BM " + temp[1];
                     found = true;
                 }else{
                     if((persentasekecocokan)>=0.5){
@@ -108,23 +99,56 @@ public class Message {
                     i++;
                 }
             }
+
+//            if(result==-1){ //Pertanyaan tidak ditemukan
+//                i++;
+//            }else{ //Pertanyaan ditemukan
+//            }
         }
+        
+//        if(!found){
+//            //Pengecekan per-substring dengan algoritma BM
+//            i=0;
+//            while(i<dataPertanyaan.size() && !found){
+//                String[] subkata = question.split(" ");
+//
+//                temp = dataPertanyaan.get(i).split("\\?\\W");
+//                pembilang=0;
+//                pembagi = temp[0].length()-subkata.length+1;
+//
+//                for(int j=0; j<subkata.length;j++){
+//                    result = BM(FormattingString(dataStopWords, dataSynonym, temp[0]),subkata[j]);
+//
+//                    if(result!=-1){
+//                        pembilang += subkata[j].length();
+//                    }
+//                }
+//
+//                persentasekecocokan = pembilang/pembagi;
+//
+//                if((persentasekecocokan)>=matchPercentage){    //presentase kecocokan string
+//                    out = temp[1];
+//                    found = true;
+//                }else{
+//                    if((persentasekecocokan)>=0.5){
+//                        alternate.add(temp[0]);
+//                    }
+//                    i++;
+//                }
+//            }
+//        }
 
         if(!found){ //Pertanyaan tidak ditemukan baik dicari dari kalimat maupun per-kata
             if(alternate.size()!=0){
                 out = "Apakah yang Anda maksud : \n";
 
                 for(int k=0;k<alternate.size();k++){
-                    if(k==alternate.size()-1){
-                        out = out + "- " + alternate.get(k);
-                    }else{
+                    if(k!=alternate.size()-1){
                         out = out + "- " + alternate.get(k) + "\n";
+                    }else{
+                        out = out + "- " + alternate.get(k);
                     }
 
-                }
-
-                for(String item : alternate){
-                    out = out + "- " + item + "\n";
                 }
             }else{
                 out = "I don't understand, senpai~ Please try a different sentence. >w<";
@@ -171,7 +195,7 @@ public class Message {
         while(i<n){
             if(pattern.charAt(j) == kataInput.charAt(i)){
                 if(j==m-1){
-                    return i-m+1;
+                    return 0;
                 }
                 i++;
                 j++;
@@ -224,7 +248,7 @@ public class Message {
             do{
                 if(pattern.charAt(j)==kataInput.charAt(i)){
                     if(j==0){
-                        return i;
+                        return 0;
                     }else{
                         i--;
                         j--;
