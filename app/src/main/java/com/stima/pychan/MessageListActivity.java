@@ -77,12 +77,30 @@ public class MessageListActivity extends AppCompatActivity {
                         messageList.add(new Message(content, user));
                         userChatInput.getText().clear();
                         mMessageAdapter.notifyDataSetChanged();
+                        // Auto scroll when new message is created
+                        mMessageRecycler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                mMessageAdapter.notifyDataSetChanged();
+                                // Call smooth scroll
+                                mMessageRecycler.smoothScrollToPosition(mMessageAdapter.getItemCount());
+                            }
+                        });
                         new Thread(new Runnable() {
                             public void run() {
-                                messageList.add(new Message(StringMatching(content), new User("Pychan")));
+                                String tempContent = new String(content);
+                                messageList.add(new Message(StringMatching(tempContent), new User("Pychan")));
+                                mMessageRecycler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Call smooth scroll
+                                        mMessageRecycler.smoothScrollToPosition(mMessageAdapter.getItemCount());
+                                        mMessageAdapter.notifyDataSetChanged();
+                                    }
+                                });
                             }
                         }).start();
-                        mMessageAdapter.notifyDataSetChanged();
+                        // Auto scroll when new message is created
                     } else {
 //                        content = content.toLowerCase();
 //                        //Menghapus stopwords pada input pertanyaan dengan pencarian kata stopwords menggunakan regex
