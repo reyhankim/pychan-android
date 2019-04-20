@@ -2,6 +2,7 @@ package com.stima.pychan;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -67,17 +68,20 @@ public class MessageListActivity extends AppCompatActivity {
     }
 
     private void setOnClick(){
-
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String content = userChatInput.getText().toString();
+                final String content = userChatInput.getText().toString();
                 if (content.trim().length() > 0) {
                     if (messageList.size() > 3) {
                         messageList.add(new Message(content, user));
                         userChatInput.getText().clear();
                         mMessageAdapter.notifyDataSetChanged();
-                        messageList.add(new Message(StringMatching(content), new User("Pychan")));
+                        new Thread(new Runnable() {
+                            public void run() {
+                                messageList.add(new Message(StringMatching(content), new User("Pychan")));
+                            }
+                        }).start();
                     } else {
 //                        content = content.toLowerCase();
 //                        //Menghapus stopwords pada input pertanyaan dengan pencarian kata stopwords menggunakan regex
@@ -159,5 +163,4 @@ public class MessageListActivity extends AppCompatActivity {
     public static ArrayList<String> getDataStopWords(){
         return dataStopWords;
     }
-
 }
