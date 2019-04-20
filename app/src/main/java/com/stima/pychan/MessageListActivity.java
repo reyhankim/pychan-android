@@ -99,7 +99,7 @@ public class MessageListActivity extends AppCompatActivity {
 //                    Toast toast = Toast.makeText(getApplicationContext(), getDataPertanyaan().get(0), Toast.LENGTH_LONG);
 //                    toast.show();
 //                } else {
-//                    Toast toast = Toast.makeText(getApplicationContext(), "DataPertanyaan Kosong", Toast.LENGTH_LONG);
+//                    Toast toast = Toast.makeText(getApplicationContext(), "datapertanyaan Kosong", Toast.LENGTH_LONG);
 //                    toast.show();
 //                }
             }
