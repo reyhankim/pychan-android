@@ -62,8 +62,6 @@ public class Message {
         int i;
         int result;
         String out = null;
-        float pembilang;    //counter jumlah huruf yang match
-        float pembagi;      //counter jumlah huruf dalam kalimat
 
         //Pengecekan langsung satu String dengan algoritma KMP
         i=0;
@@ -75,7 +73,24 @@ public class Message {
                 out = "WITH KMP " + temp[1];
                 found = true;
             }else{
+                i++;
+            }
+
+//            if(result==-1){ //Pertanyaan tidak ditemukan
+//                i++;
+//            }else{ //Pertanyaan ditemukan
+//            }
+        }
+        
+        if(!found){
+            //Pengecekan per-substring dengan algoritma BM
+            i=0;
+            float pembilang;    //counter jumlah huruf yang match
+            float pembagi;      //counter jumlah huruf dalam kalimat
+            while(i<dataPertanyaan.size() && !found){
                 String[] subkata = question.split(" ");
+
+                temp = dataPertanyaan.get(i).split("\\?\\W");
                 pembilang=0;
                 pembagi = temp[0].length()-subkata.length+1;
 
@@ -90,7 +105,7 @@ public class Message {
                 persentasekecocokan = pembilang/pembagi;
 
                 if((persentasekecocokan)>=matchPercentage){    //presentase kecocokan string
-                    out = "WITH BM " + temp[1];
+                    out = temp[1];
                     found = true;
                 }else{
                     if((persentasekecocokan)>=0.5){
@@ -99,54 +114,17 @@ public class Message {
                     i++;
                 }
             }
-
-//            if(result==-1){ //Pertanyaan tidak ditemukan
-//                i++;
-//            }else{ //Pertanyaan ditemukan
-//            }
         }
-        
-//        if(!found){
-//            //Pengecekan per-substring dengan algoritma BM
-//            i=0;
-//            while(i<dataPertanyaan.size() && !found){
-//                String[] subkata = question.split(" ");
-//
-//                temp = dataPertanyaan.get(i).split("\\?\\W");
-//                pembilang=0;
-//                pembagi = temp[0].length()-subkata.length+1;
-//
-//                for(int j=0; j<subkata.length;j++){
-//                    result = BM(FormattingString(dataStopWords, dataSynonym, temp[0]),subkata[j]);
-//
-//                    if(result!=-1){
-//                        pembilang += subkata[j].length();
-//                    }
-//                }
-//
-//                persentasekecocokan = pembilang/pembagi;
-//
-//                if((persentasekecocokan)>=matchPercentage){    //presentase kecocokan string
-//                    out = temp[1];
-//                    found = true;
-//                }else{
-//                    if((persentasekecocokan)>=0.5){
-//                        alternate.add(temp[0]);
-//                    }
-//                    i++;
-//                }
-//            }
-//        }
 
         if(!found){ //Pertanyaan tidak ditemukan baik dicari dari kalimat maupun per-kata
             if(alternate.size()!=0){
                 out = "Apakah yang Anda maksud : \n";
 
                 for(int k=0;k<alternate.size();k++){
-                    if(k!=alternate.size()-1){
-                        out = out + "- " + alternate.get(k) + "\n";
-                    }else{
+                    if(k==alternate.size()-1){
                         out = out + "- " + alternate.get(k);
+                    }else{
+                        out = out + "- " + alternate.get(k) + "\n";
                     }
 
                 }
