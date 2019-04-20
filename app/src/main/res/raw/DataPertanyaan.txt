@@ -1,5 +1,5 @@
 Siapa nama koordinator dosen mata kuliah strategi algoritma 2018/2019? Koordinator dosen mata kuliah Strategi Algoritma 2018/2019 adalah Pak Rinaldi Munir
-Siapa nama koordas strategi algoritma? Koordas mata kuliah Strategi Algoritma adalah Kevin Andrian Liwinata
+Siapa nama koordinator asisten mata kuliah strategi algoritma? Koordas mata kuliah Strategi Algoritma adalah Kevin Andrian Liwinata
 Berapa jumlah SKS minimal untuk lulus S1 di ITB? Untuk lulus S1 di ITB, seorang mahasiswa harus menyelesaikan sebanyak 144 SKS
 Apa kepanjangan SKSD? Sistem Komunikasi Satelit Domestik
 Tanggal berapa diadakan pemilu tahun ini? Pemilu tahun ini diadakan pada 17 April 2019
@@ -19,7 +19,6 @@ Berapa tahun Indonesia dijajah Jepang? Indonesia dijajah Jepang selama 3 setenga
 Dimana Soekarno memproklamasikan kemerdekaan Indonesia? Soekarno memproklamasikan kemerdekaan Indonesia di rumah Jl. Pegangsaan Timur No.56
 Dimana kantin terdekat Labtek 5? Kantin Borju. Aku pengen banget makan di sana! Tapi, sayangnya aku berbentuk APK.
 Hai? Halo, aku Pychan. Ada yang ingin kamu tanyakan?
-Siapa anda? Aku adalah Pychan!
 Apa Kabar? Aku selalu luar biasa!
 Apa itu Pychan? Pychan adalah aku! Aku adalah Pychan~!
 Apa itu Chatbot? Chatbot merupakan agen cerdas yang meniru kemampuan manusia untuk melakukan percakapan dengan pengguna manusia. Contohnya ya aku! :>

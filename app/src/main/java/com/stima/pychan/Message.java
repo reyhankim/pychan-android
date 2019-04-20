@@ -51,9 +51,12 @@ public class Message {
         ArrayList<String> dataSynonym = getDataSynonym();
         ArrayList<String> dataStopWords = getDataStopWords();
 
+        ArrayList<String> alternate = new ArrayList<String>();
+
         question = FormattingString(dataStopWords, dataSynonym, question);
 
         final float matchPercentage = (float) 0.9;
+        float persentasekecocokan;
         String[] temp;
         boolean found = false;
         int i;
@@ -63,7 +66,7 @@ public class Message {
         //Pengecekan langsung satu String dengan algoritma KMP
         i=0;
         while(i<dataPertanyaan.size() && !found){
-            temp = dataPertanyaan.get(i).split("\\?");
+            temp = dataPertanyaan.get(i).split("\\?\\W");
             result = KMP(question, FormattingString(dataStopWords, dataSynonym, temp[0]));
             if(result==-1){ //Pertanyaan tidak ditemukan
                 i++;
@@ -81,7 +84,7 @@ public class Message {
             while(i<dataPertanyaan.size() && !found){
                 String[] subkata = question.split(" ");
                 
-                temp = dataPertanyaan.get(i).split("\\?");
+                temp = dataPertanyaan.get(i).split("\\?\\W");
                 pembilang=0;
                 pembagi = temp[0].length()-subkata.length+1;
                 
@@ -92,18 +95,40 @@ public class Message {
                         pembilang += subkata[j].length();
                     }
                 }
-                
-                if((pembilang/pembagi)>=matchPercentage){    //presentase kecocokan string
+
+                persentasekecocokan = pembilang/pembagi;
+
+                if((persentasekecocokan)>=matchPercentage){    //presentase kecocokan string
                     out = temp[1];
                     found = true;
                 }else{
+                    if((persentasekecocokan)>=0.5){
+                        alternate.add(temp[0]);
+                    }
                     i++;
                 }
             }
         }
 
         if(!found){ //Pertanyaan tidak ditemukan baik dicari dari kalimat maupun per-kata
-            out = "I don't understand, senpai~ Please try a different sentence. >w<";
+            if(alternate.size()!=0){
+                out = "Apakah yang Anda maksud : \n";
+
+                for(int k=0;k<alternate.size();k++){
+                    if(k==alternate.size()-1){
+                        out = out + "- " + alternate.get(k);
+                    }else{
+                        out = out + "- " + alternate.get(k) + "\n";
+                    }
+
+                }
+
+                for(String item : alternate){
+                    out = out + "- " + item + "\n";
+                }
+            }else{
+                out = "I don't understand, senpai~ Please try a different sentence. >w<";
+            }
         }
         return out;
     }
