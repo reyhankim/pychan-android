@@ -8,6 +8,37 @@ Pemilu diadakan berapa kali setahun? Pemilu diadakan setiap 5 tahun sekali
 Siapa saja pembuat anda? Aku dibuat oleh Reyhan Naufal Hakim, Nando Rusrin Pratama, Willy Santoso
 Apa saja stack yang dipakai untuk membuat anda? Tidak ada. Aku mengingat dengan memanfaatkan beberapa LinkedList.
 Apa nama ibukota Indonesia? Tentu saja, DKI Jakarta.
+Apa nama ibukota Malaysia? Tentu saja, Kuala Lumpur.
+Apa nama ibukota Singapura? Tentu saja, Singapura.
+Apa nama ibukota Thailand? Tentu saja, Bangkok.
+Apa nama ibukota Vietnam? Tentu saja, Hanoi.
+Apa nama ibukota Kamboja? Tentu saja, Phnom Penh.
+Apa nama ibukota Laos? Tentu saja, Vientiane.
+Apa nama ibukota Brunei Darussalam? Tentu saja, Bandar Sri Begawan.
+Apa nama ibukota Timor Leste? Tentu saja, Dili.
+Apa nama ibukota Filipina? Tentu saja, Manila.
+Apa nama ibukota Myanmar? Tentu saja, Napyidaw.
+Apa nama ibukota HongKong? Tentu saja, Hongkong City.
+Apa nama ibukota Jepang? Tentu saja, Tokyo
+Apa nama ibukota Korea Utara? Tentu saja, Pyongyang.
+Apa nama ibukota Korea Selatan? Tentu saja, Seoul.
+Apa nama ibukota Tiongkok? Tentu saja, Beijing.
+Apa nama ibukota India? Tentu saja, New Delhi.
+Apa nama ibukota Australia? Tentu saja, Melbourne.
+Apa nama ibukota Selandia Baru? Tentu saja, Wellington.
+Apa nama ibukota Perancis? Tentu saja, Paris.
+Apa nama ibukota Jerman? Tentu saja, Berlin.
+Apa nama ibukota Belanda? Tentu saja, Amsterdam.
+Apa nama ibukota Italia? Tentu saja, Roma.
+Apa nama ibukota Spanyol? Tentu saja, Madrid.
+Apa nama ibukota Portugal? Tentu saja, Lisabon.
+Apa nama ibukota Rusia? Tentu saja, Moskow.
+Apa nama ibukota Polandia? Tentu saja, Warsawa.
+Apa nama ibukota Mexico? Tentu saja, Mexico City.
+Apa nama ibukota Amerika Serikat? Tentu saja, Washington DC.
+Apa nama ibukota Brasil? Tentu saja, Rio de Janeiro.
+Apa nama ibukota Peru? Tentu saja, Lima.
+Apa nama ibukota Argentina? Tentu saja, Buenos Aires.
 Nama ibukota Indonesia sebelum disebut Jakarta adalah? Jayakarta
 Siapa pembuat algoritma KMP? Knuth-Morris-Prat, sesuai dengan kepanjangan dari KMP itu sendiri.
 Siapa pemain catur nomor satu dunia sekarang? Magnus Carlsen. Aku ngefans banget sama dia, lho!
@@ -39,3 +70,4 @@ Apa burung terkecil di dunia? Bee Hummingbird
 Apa Lambang Negara Indonesia? Lambang negara Indonesia adalah Garuda Pancasila dengan semboyan Bhinneka Tunggal Ika. 
 Siapakah pengetik teks proklamasi? Mohamad Ibnu Sayuti atau yang lebih dikenal sebagai Sayuti Melik.
 Kapan Indonesia merdeka? 17 Agustus 1945
+Siapa pendiri Alibaba? Jack Ma.
