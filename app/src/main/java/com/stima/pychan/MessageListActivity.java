@@ -1,15 +1,17 @@
 package com.stima.pychan;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import static com.stima.pychan.Message.StringMatching;
@@ -24,9 +26,20 @@ public class MessageListActivity extends AppCompatActivity {
     private Button sendButton;
     private EditText userChatInput;
 
+    private static ArrayList<String> dataPertanyaan;
+    private static ArrayList<String> dataSynonym;
+    private static ArrayList<String> dataStopWords;
+
+    private static String namaFilePertanyaan = "raw/datapertanyaan.txt";
+    private static String namaFileSynonym = "raw/datasynonym.txt";
+    private static String namaFileStopWords = "raw/datastopwords.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        dataPertanyaan = getDataFromFile(getApplicationContext(), R.raw.datapertanyaan);
+        dataStopWords = getDataFromFile(getApplicationContext(), R.raw.datastopwords);
+        dataSynonym = getDataFromFile(getApplicationContext(), R.raw.datasynonym);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_list);
 
@@ -92,4 +105,59 @@ public class MessageListActivity extends AppCompatActivity {
             }
         });
     }
+
+    //Prosedur pembacaan file dan memindahkan ke memori agar data dari file tersimpan
+    public static ArrayList<String> getDataFromFile(Context ctx, int resId){
+
+        ArrayList<String> data = new ArrayList<String>();
+
+//        try{
+//            final File file = new File(namaFile);
+//
+//            if(file.exists()){
+//                FileInputStream fis = new FileInputStream(file);
+//                BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+////            DataInputStream in = new DataInputStream(fis);
+//                String temp = br.readLine();
+//
+//                while(temp!=null){
+//                    data.add(temp);
+//                    temp = br.readLine();
+//                }
+//            }
+
+            InputStream inputStream = ctx.getResources().openRawResource(resId);
+
+            InputStreamReader inputreader = new InputStreamReader(inputStream);
+            BufferedReader buffreader = new BufferedReader(inputreader);
+
+            String temp = null;
+            StringBuilder text = new StringBuilder();
+            try{
+                while((temp = buffreader.readLine()) != null){
+                    data.add(temp);
+            }
+            System.out.println("BERHASIL");
+//            in.close();
+        }catch(Exception e){
+            System.out.println("Gagal membaca file " + resId);
+//            System.exit(1);
+            e.printStackTrace();
+        }
+
+        return data;
+    }
+
+    public static ArrayList<String> getDataPertanyaan(){
+        return dataPertanyaan;
+    }
+
+    public static ArrayList<String> getDataSynonym(){
+        return dataSynonym;
+    }
+
+    public static ArrayList<String> getDataStopWords(){
+        return dataStopWords;
+    }
+
 }

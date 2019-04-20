@@ -1,28 +1,18 @@
 package com.stima.pychan;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.regex.Pattern;
+
+import static com.stima.pychan.MessageListActivity.getDataPertanyaan;
+import static com.stima.pychan.MessageListActivity.getDataSynonym;
+import static com.stima.pychan.MessageListActivity.getDataStopWords;
 
 public class Message {
     private String message;
     private User sender;
     private Date createdAt;
-
-    private static ArrayList<String> dataPertanyaan;
-    private static ArrayList<String> dataSynonym;
-    private static ArrayList<String> dataStopWords;
-
-    static {
-        System.out.println("Static initializer dijalankan");
-        String namaFilePertanyaan = "DataPertanyaan.txt";
-        String namaFileSynonym = "DataSynonym.txt";
-        String namaFileStopWords = "DataStopWords.txt";
-
-        dataPertanyaan = getDataFromFile(namaFilePertanyaan);
-        dataStopWords = getDataFromFile(namaFileStopWords);
-        dataSynonym = getDataFromFile(namaFileSynonym);
-    }
 
     public Message(String message, User sender) {
         setMessage(message);
@@ -42,17 +32,6 @@ public class Message {
         return this.createdAt;
     }
 
-    public static ArrayList<String> getDataPertanyaan(){
-        return dataPertanyaan;
-    }
-
-    public static ArrayList<String> getDataSynonym(){
-        return dataSynonym;
-    }
-
-    public static ArrayList<String> getDataStopWords(){
-        return dataStopWords;
-    }
 
     void setMessage(String message) {
         this.message = message;
@@ -68,6 +47,10 @@ public class Message {
 
     public static String StringMatching(String message){
         String question = message;
+        ArrayList<String> dataPertanyaan = getDataPertanyaan();
+        ArrayList<String> dataSynonym = getDataSynonym();
+        ArrayList<String> dataStopWords = getDataStopWords();
+
         question = FormattingString(dataStopWords, dataSynonym, question);
 
         final float matchPercentage = (float) 0.9;
@@ -257,33 +240,5 @@ public class Message {
         return cek;
     }
 
-    //Prosedur pembacaan file dan memindahkan ke memori agar data dari file tersimpan
-    public static ArrayList<String> getDataFromFile(String namaFile){
 
-        ArrayList<String> data = new ArrayList<String>();
-
-        try{
-            final File file = new File(namaFile);
-
-            if(file.exists()){
-                FileInputStream fis = new FileInputStream(file);
-                BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-//            DataInputStream in = new DataInputStream(fis);
-                String temp = br.readLine();
-
-                while(temp!=null){
-                    data.add(temp);
-                    temp = br.readLine();
-                }
-            }
-                System.out.println("BERHASIL");
-//            in.close();
-        }catch(Exception e){
-             System.out.println("Gagal membaca file " + namaFile);
-//            System.exit(1);
-            e.printStackTrace();
-        }
-
-        return data;
-    }
 }

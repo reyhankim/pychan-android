@@ -1,0 +1,25 @@
+Siapa nama koordinator dosen mata kuliah strategi algoritma 2018/2019? Koordinator dosen mata kuliah Strategi Algoritma 2018/2019 adalah Pak Rinaldi Munir
+Siapa nama koordas strategi algoritma? Koordas mata kuliah Strategi Algoritma adalah Kevin Andrian Liwinata
+Berapa jumlah SKS minimal untuk lulus S1 di ITB? Untuk lulus S1 di ITB, seorang mahasiswa harus menyelesaikan sebanyak 144 SKS
+Apa kepanjangan SKSD? Sistem Komunikasi Satelit Domestik
+Tanggal berapa diadakan pemilu tahun ini? Pemilu tahun ini diadakan pada 17 April 2019
+Sudah berapa kali diadakan pemilu presiden? Dari informasi yang saya dapatkan, sudah 4 Kali
+Pemilu diadakan berapa kali setahun? Pemilu diadakan setiap 5 tahun sekali
+Siapa saja pembuat anda? Aku dibuat oleh Reyhan Naufal Hakim, Nando Rusrin Pratama, Willy Santoso
+Apa saja stack yang dipakai untuk membuat anda? Tidak ada. Aku mengingat dengan memanfaatkan beberapa LinkedList.
+Apa nama ibukota Indonesia? Tentu saja, DKI Jakarta.
+Nama ibukota Indonesia sebelum disebut Jakarta adalah? Jayakarta
+Siapa pembuat algoritma KMP? Knuth-Morris-Prat, sesuai dengan kepanjangan dari KMP itu sendiri.
+Siapa pemain catur nomor satu dunia sekarang? Magnus Carlsen. Aku ngefans banget sama dia, lho!
+Apa nama blackhole yang berada di tengah galaksi bimasakti? Blackhole-chan, kah? Eh, maksudku, Blackhole M87..
+Siapa nama pemain karakter wanita yang direbutkan oleh kedua pria dalam lagu "adu rayu"? Velove Vexia
+Berapa jumlah presiden Indonesia? Hingga April 2019, ada tujuh orang.
+Tahun berapa Indonesia merdeka? Indonesia merdeka pada tahun 1945.
+Berapa tahun Indonesia dijajah Jepang? Indonesia dijajah Jepang selama 3 setengah tahun.
+Dimana Soekarno memproklamasikan kemerdekaan Indonesia? Soekarno memproklamasikan kemerdekaan Indonesia di rumah Jl. Pegangsaan Timur No.56
+Dimana kantin terdekat Labtek 5? Kantin Borju. Aku pengen banget makan di sana! Tapi, sayangnya aku berbentuk APK.
+Hai? Halo, aku Pychan. Ada yang ingin kamu tanyakan?
+Siapa anda? Aku adalah Pychan!
+Apa Kabar? Aku selalu luar biasa!
+Apa itu Pychan? Pychan adalah aku! Aku adalah Pychan~!
+Apa itu Chatbot? Chatbot merupakan agen cerdas yang meniru kemampuan manusia untuk melakukan percakapan dengan pengguna manusia. Contohnya ya aku! :>
