@@ -70,16 +70,12 @@ public class Message {
             result = KMP(question, FormattingString(dataStopWords, dataSynonym, temp[0]));
 
             if(result==0){
-                out = "WITH KMP " + temp[1];
+                out = temp[1];
                 found = true;
             }else{
                 i++;
             }
 
-//            if(result==-1){ //Pertanyaan tidak ditemukan
-//                i++;
-//            }else{ //Pertanyaan ditemukan
-//            }
         }
         
         if(!found){

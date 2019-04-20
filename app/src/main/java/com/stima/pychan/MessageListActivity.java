@@ -2,7 +2,6 @@ package com.stima.pychan;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -102,13 +101,6 @@ public class MessageListActivity extends AppCompatActivity {
                         }).start();
                         // Auto scroll when new message is created
                     } else {
-//                        content = content.toLowerCase();
-//                        //Menghapus stopwords pada input pertanyaan dengan pencarian kata stopwords menggunakan regex
-//                        for(int i=0;i<getDataStopWords().size();i++){
-//                            if(cekRegex(content, getDataStopWords().get(i))){
-//                                content = content.replaceAll("\\W" + getDataStopWords().get(i) + "\\W", " ");  //Menghapus stopwords pada question
-//                            }
-//                        }
                         messageList.add(new Message(content, user));
                         userChatInput.getText().clear();
                         user.setNickname(content);
@@ -118,13 +110,6 @@ public class MessageListActivity extends AppCompatActivity {
                     }
                 }
 
-//                if (getDataPertanyaan().get(0) != null) {
-//                    Toast toast = Toast.makeText(getApplicationContext(), getDataPertanyaan().get(0), Toast.LENGTH_LONG);
-//                    toast.show();
-//                } else {
-//                    Toast toast = Toast.makeText(getApplicationContext(), "datapertanyaan Kosong", Toast.LENGTH_LONG);
-//                    toast.show();
-//                }
             }
         });
     }
@@ -134,28 +119,13 @@ public class MessageListActivity extends AppCompatActivity {
 
         ArrayList<String> data = new ArrayList<String>();
 
-//        try{
-//            final File file = new File(namaFile);
-//
-//            if(file.exists()){
-//                FileInputStream fis = new FileInputStream(file);
-//                BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-////            DataInputStream in = new DataInputStream(fis);
-//                String temp = br.readLine();
-//
-//                while(temp!=null){
-//                    data.add(temp);
-//                    temp = br.readLine();
-//                }
-//            }
+        InputStream inputStream = ctx.getResources().openRawResource(resId);
 
-            InputStream inputStream = ctx.getResources().openRawResource(resId);
+        InputStreamReader inputreader = new InputStreamReader(inputStream);
+        BufferedReader buffreader = new BufferedReader(inputreader);
 
-            InputStreamReader inputreader = new InputStreamReader(inputStream);
-            BufferedReader buffreader = new BufferedReader(inputreader);
-
-            String temp = null;
-            StringBuilder text = new StringBuilder();
+        String temp = null;
+        StringBuilder text = new StringBuilder();
             try{
                 while((temp = buffreader.readLine()) != null){
                     data.add(temp);
