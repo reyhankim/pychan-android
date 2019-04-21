@@ -298,7 +298,6 @@ kami
 kamilah
 kamulah
 kan
-kapan
 kapankah
 kapanpun
 karena
@@ -417,7 +416,6 @@ mendatangi
 mendatangkan
 menegaskan
 mengakhiri
-mengapa
 mengatakan
 mengatakannya
 mengenai
@@ -653,7 +651,6 @@ setinggi
 seusai
 sewaktu
 siap
-siapa
 siapakah
 siapapun
 sini

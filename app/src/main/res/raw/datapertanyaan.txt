@@ -6,7 +6,7 @@ Tanggal berapa diadakan pemilu tahun ini? 17 April 2019
 Sudah berapa kali diadakan pemilu presiden? 4 Kali
 Pemilu diadakan berapa kali setahun? 5 tahun sekali
 Siapa saja pembuat anda? Aku dibuat oleh Reyhan Naufal Hakim, Nando Rusrin Pratama, Willy Santoso
-Apa saja stack yang dipakai untuk membuat anda? Tidak ada. Aku mengingat dengan memanfaatkan beberapa LinkedList.
+Apa saja stack yang dipakai untuk membuat anda? Program chatbot menggunakan bahasa pemrograman Java, dan data disimpan pada ArrayList
 Apa nama ibukota Indonesia? DKI Jakarta.
 Apa nama ibukota Malaysia? Tentu saja, Kuala Lumpur.
 Apa nama ibukota Singapura? Tentu saja, Singapura.
@@ -74,3 +74,7 @@ Apa Lambang Negara Indonesia? Lambang negara Indonesia adalah Garuda Pancasila d
 Siapakah pengetik teks proklamasi? Mohamad Ibnu Sayuti atau yang lebih dikenal sebagai Sayuti Melik.
 Kapan Indonesia merdeka? 17 Agustus 1945
 Siapa pendiri Alibaba? Jack Ma.
+Siapa pendiri Google? Larry Page & Sergey Brin
+Siapa pendiri Microsoft? Bill Gates & Paul Allen
+Siapa pendiri Facebook? Mark Zuckerberg
+Siapa pendiri Apple? Steve Jobs, Ronald Wayne, dan Steve Wozniak
