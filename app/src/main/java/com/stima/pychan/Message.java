@@ -138,10 +138,21 @@ public class Message {
         kata = kata.replace("\\W?\\?","");     //Menghapus tanda ? pada format pencarian
         kata = kata.toLowerCase();
 
-        //Menghapus stopwords pada input pertanyaan dengan pencarian kata stopwords menggunakan regex
+        String[] subkata = kata.split(" ");
+
         for(int i=0;i<stopWords.size();i++){
             if(cekRegex(kata, stopWords.get(i))){
-                kata = kata.replaceAll("\\W" + stopWords.get(i) + "\\W", " ");  //Menghapus stopwords pada question
+                for(int j=0;j<subkata.length;j++){  //Menghapus stopwords pada kata
+                    if(subkata[j]!=stopWords.get(i)){
+                        if(j==0){
+                            kata = subkata[j] + " ";
+                        }else if(j==subkata.length-1){
+                            kata += subkata[j];
+                        }else{
+                            kata = kata + subkata[j] + " ";
+                        }
+                    }
+                }
             }
         }
 
@@ -256,7 +267,7 @@ public class Message {
 
     public static boolean cekRegex(String kataInput, String pattern){
         boolean cek;
-        String regex = "\\W?" + pattern + "\\W?";
+        String regex = ".*" + pattern + ".*";
 
         cek = Pattern.matches(regex, kataInput);
 
