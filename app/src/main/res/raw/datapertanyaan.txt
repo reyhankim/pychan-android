@@ -39,9 +39,6 @@ Apa nama ibukota Amerika Serikat? Tentu saja, Washington DC.
 Apa nama ibukota Brasil? Tentu saja, Rio de Janeiro.
 Apa nama ibukota Peru? Tentu saja, Lima.
 Apa nama ibukota Argentina? Tentu saja, Buenos Aires.
-Siapa saja pembuat anda? <tuliskan nama anggota kelompok>
-Apa saja stack yang dipakai untuk membuat anda? <tuliskan stack yang dipakai>
-Apa nama ibukota Indonesia? DKI Jakarta
 Nama ibukota Indonesia sebelum disebut Jakarta adalah? Jayakarta
 Siapa pembuat algoritma KMP? Knuth-Morris-Prat
 Siapa pemain catur nomor satu dunia sekarang? Magnus Carlsen
